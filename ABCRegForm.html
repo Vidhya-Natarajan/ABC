@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ABC</title> 
+</head>
+<body >
+
+<div align="middle"> 
+
+<img src="ABCfiles/ABClogo.gif" alt="ABC" style="width:100px;height:100px";> 
+<h3>Create Account</h3><br>
+<form>
+Your User Name <br>  
+<input id="usrname" type="text" ><br> <br>
+Email   <br>
+<input id="usremail" type="text" ><br><br>
+Password <br>   
+<input type="password" id="password1"><br> <br>
+Password again <br>
+<input type="password" id="password2"><br> <br>
+<input type="radio" name="gender" value="male" checked>Male<br>
+<input type="radio" name="gender" value="female">Female<br><br>
+<input type="checkbox" id="TandC">I agree to the ABC terms and conditions<br><br>
+<button type="button" onclick="myFunction()">Create your ABC account</button> <br><br>
+<font id="NotOK" color="red"></font>
+<font id="OK" color="green"></font>
+<br> Already have an account?  <a href="ABCSignIn.html">Sign In</a> <br>
+
+</form>
+</div>
+
+<script>
+function myFunction() {
+    var x1, x2, p1,p2, T1, text;
+    var chkUsrName = /^[a-z][0-9a-z]+$/i;
+	var chkUsrEmail = /^[a-z][0-9a-z\.\_]+@[a-z]+\.[a-z]+$/i;
+	var chkPaswrd = /^[a-zA-Z0-9@$\_]+$/;
+    x1 = document.getElementById("usrname").value;
+    x2 = document.getElementById("usremail").value;
+	p1 = document.getElementById("password1").value;
+    p2 = document.getElementById("password2").value;
+	T1 = document.getElementById("TandC");
+	
+	    if (x1.match(chkUsrName)) {	
+        text = "Valid User Name";
+		if (x2.match(chkUsrEmail)) {
+			text = "Valid User Email";
+			if (p1.match(p2)){
+			text = "password matches";
+				if (p1.match(chkPaswrd)){
+				text = "Registration OK";
+				} else{
+				text = "Invalid password";
+				}
+			} else {
+				text = "Passwords not matching";
+			}
+		} else {
+			text = "Invalid User Email ";
+		}
+	} else {
+		text = "Invalid User Name";
+	}
+	if (text.match("Registration OK")){
+	    if(T1.checked){
+			document.getElementById("OK").innerHTML = text;	
+			document.getElementById("NotOK").innerHTML = "";		
+		}else{
+			text = "Please agree to Terms and conditions";
+			document.getElementById("OK").innerHTML = "";	
+			document.getElementById("NotOK").innerHTML = text;
+		}
+	}
+	else
+	{
+		document.getElementById("NotOK").innerHTML = text;
+		document.getElementById("OK").innerHTML = "";			
+	}
+}
+</script>
+</body>
+</html>
